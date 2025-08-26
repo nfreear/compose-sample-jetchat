@@ -69,6 +69,7 @@ import com.example.compose.jetchat.data.meProfile
 import com.example.compose.jetchat.theme.JetchatTheme
 import com.example.compose.jetchat.widget.WidgetReceiver
 
+// Based on: `components/JetchatDrawer.kt` ~ `JetchatDrawerContent()`
 @Composable
 fun TypographySampleDrawerContent(onProfileClicked: (String) -> Unit, onChatClicked: (String) -> Unit, selectedMenu: String = "composers") {
     // Use windowInsetsTopHeight() to add a spacer which pushes the drawer content
@@ -77,65 +78,58 @@ fun TypographySampleDrawerContent(onProfileClicked: (String) -> Unit, onChatClic
         Spacer(Modifier.windowInsetsTopHeight(WindowInsets.statusBars))
         DrawerHeader()
         DividerItem()
-        /* DrawerItemHeader("Chats")
-        ChatItem("composers", selectedMenu == "composers") {
-            onChatClicked("composers")
-        }
-        ChatItem("droidcon-nyc", selectedMenu == "droidcon-nyc") {
-            onChatClicked("droidcon-nyc")
-        }
-        DividerItem(modifier = Modifier.padding(horizontal = 28.dp))
-         */
-        /*
-        DrawerItemHeader("Typography - Font Size")
-        TypographyItem(
-            text = "displayMedium: 45sp",
-            style = MaterialTheme.typography.displayMedium,
-            rowHeight = 68.dp
-        )
-        TypographyItem(
-            text = "headlineLarge: 32sp",
-            style = MaterialTheme.typography.headlineLarge,
-            rowHeight = 56.dp
-        )
-        TypographyItem(
-            text = "headlineSmall: 24sp",
-            style = MaterialTheme.typography.headlineSmall,
-            rowHeight = 56.dp
-        )
-        TypographyItem(
-            text = "bodyMedium: 14sp",
-            style = MaterialTheme.typography.bodyMedium,
-            rowHeight = 56.dp
-        )
-        TypographyItem(
-            text = "labelSmall: 11sp",
-            style = MaterialTheme.typography.labelSmall,
-            rowHeight = 56.dp
-        ) */
 
-        DrawerItemHeader("Typography - Font Size, V2")
-        TypoRowV2(10.sp)
-        TypoRowV2(20.sp)
-        TypoRowV2(30.sp)
-        TypoRowV2(40.sp)
-        TypoRowV2(50.sp)
-        TypoRowV2(60.sp)
-        TypoRowV2(70.sp)
+        // TypographyDemo()
+
+        TypoDemoV2()
 
         DividerItem()
 
         RowOrColumnDemo()
 
-        /*ProfileItem(
-            "Ali Conors (you)", meProfile.photo,
-        */
         if (widgetAddingIsSupported(LocalContext.current)) {
             DividerItem(modifier = Modifier.padding(horizontal = 28.dp))
             DrawerItemHeader("Settings")
             WidgetDiscoverability()
         }
     }
+}
+
+@Composable
+private fun TypographyDemo() {
+    DrawerItemHeader("Typography - Font Size")
+    TypographyItem(
+        text = "displayMedium: 45sp",
+        style = MaterialTheme.typography.displayMedium
+    )
+    TypographyItem(
+        text = "headlineLarge: 32sp",
+        style = MaterialTheme.typography.headlineLarge
+    )
+    TypographyItem(
+        text = "headlineSmall: 24sp",
+        style = MaterialTheme.typography.headlineSmall
+    )
+    TypographyItem(
+        text = "bodyMedium: 14sp",
+        style = MaterialTheme.typography.bodyMedium
+    )
+    TypographyItem(
+        text = "labelSmall: 11sp",
+        style = MaterialTheme.typography.labelSmall
+    )
+}
+
+@Composable
+private fun TypoDemoV2() {
+    DrawerItemHeader("Typography - Font Size, V2")
+    TypoRowV2(10.sp)
+    TypoRowV2(20.sp)
+    TypoRowV2(30.sp)
+    TypoRowV2(40.sp)
+    TypoRowV2(50.sp)
+    TypoRowV2(60.sp)
+    TypoRowV2(70.sp)
 }
 
 @Composable
@@ -169,63 +163,11 @@ private fun DrawerItemHeader(text: String) {
     }
 }
 
-/* @Composable
-private fun ChatItem(text: String, selected: Boolean) {
-    val background = if (selected) {
-        Modifier.background(MaterialTheme.colorScheme.primaryContainer)
-    } else {
-        Modifier
-    }
-    Row(
-        modifier = Modifier
-            .height(56.dp)
-            .fillMaxWidth()
-            .padding(horizontal = 12.dp)
-            .clip(CircleShape)
-            .then(background)
-            .clickable(onClick = onChatClicked),
-        verticalAlignment = CenterVertically,
-    ) {
-        val iconTint = if (selected) {
-            MaterialTheme.colorScheme.primary
-        } else {
-            MaterialTheme.colorScheme.onSurfaceVariant
-        }
-        Icon(
-            painter = painterResource(id = R.drawable.ic_jetchat),
-            tint = iconTint,
-            modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 16.dp),
-            contentDescription = null,
-        )
-        Text(
-            text,
-            style = MaterialTheme.typography.bodyMedium,
-            color = if (selected) {
-                MaterialTheme.colorScheme.primary
-            } else {
-                MaterialTheme.colorScheme.onSurface
-            },
-            modifier = Modifier.padding(start = 12.dp),
-        )
-    }
-} */
-
 @Composable
 private fun TypoRowV2(sizeInSp: TextUnit) {
-    val context = LocalContext.current
-    val displayMetrics = context.getResources().getDisplayMetrics()
+    // Convert SP to PX to DP.
+    val fontSizeInDp = convertSpToDp(sizeInSp)
 
-    // Convert SP to PX to DP ??
-    val fontSizeInPx = TypedValue.applyDimension(
-        TypedValue.COMPLEX_UNIT_SP,
-        sizeInSp.value,
-        displayMetrics
-    )
-    val fontSizeInDp = TypedValue.deriveDimension(
-        TypedValue.COMPLEX_UNIT_DIP,
-        fontSizeInPx,
-        displayMetrics
-    )
     Row() {
         Text(
             text = "${sizeInSp} -> ${fontSizeInDp}.dp"
@@ -259,6 +201,7 @@ private fun RowOrColumn(text: String) {
     };
 }
 
+// Convert Scale-independent pixels (sp) to Device-independent pixels (dp).
 @Composable
 private fun convertSpToDp(sizeInSp: TextUnit): Float {
     val context = LocalContext.current
@@ -279,26 +222,16 @@ private fun convertSpToDp(sizeInSp: TextUnit): Float {
 }
 
 @Composable
-private fun TypographyItem(text: String, style: TextStyle, rowHeight: Dp) {
+private fun TypographyItem(text: String, style: TextStyle) { //, rowHeight: Dp) {
     val background = /* if (selected) {
         Modifier.background(MaterialTheme.colorScheme.primaryContainer)
     } else { */
         Modifier
     // }
-    val context = LocalContext.current
-    val displayMetrics = context.getResources().getDisplayMetrics()
 
-    // Convert SP to PX to DP ??
-    val fontSizeInPx = TypedValue.applyDimension(
-        TypedValue.COMPLEX_UNIT_SP,
-        style.fontSize.value,
-        displayMetrics
-    )
-    val fontSizeInDp = TypedValue.deriveDimension(
-        TypedValue.COMPLEX_UNIT_DIP,
-        fontSizeInPx,
-        displayMetrics
-    )
+    // Convert SP to PX to DP.
+    val fontSizeInDp = convertSpToDp(style.fontSize)
+
     Row(
         modifier = Modifier
             .defaultMinSize(minHeight = 56.dp)
@@ -313,16 +246,6 @@ private fun TypographyItem(text: String, style: TextStyle, rowHeight: Dp) {
         val paddingSizeModifier = Modifier
             .padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
             .size(24.dp)
-        /* if (profilePic != null) {
-            Image(
-                painter = painterResource(id = profilePic),
-                modifier = paddingSizeModifier.then(Modifier.clip(CircleShape)),
-                contentScale = ContentScale.Crop,
-                contentDescription = null,
-            )
-        } else {
-            Spacer(modifier = paddingSizeModifier)
-        } */
         Text(
             text = "$text > ${fontSizeInDp}dp",
             style = style, // MaterialTheme.typography.bodyMedium,
@@ -331,38 +254,6 @@ private fun TypographyItem(text: String, style: TextStyle, rowHeight: Dp) {
         )
     }
 }
-
-/* @Composable
-fun DividerItem(modifier: Modifier = Modifier) {
-    HorizontalDivider(
-        modifier = modifier,
-        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f),
-    )
-} */
-
-/* @Composable
-@Preview
-fun DrawerPreview() {
-    JetchatTheme {
-        Surface {
-            Column {
-                JetchatDrawerContent({}, {})
-            }
-        }
-    }
-}
-
-@Composable
-@Preview
-fun DrawerPreviewDark() {
-    JetchatTheme(isDarkTheme = true) {
-        Surface {
-            Column {
-                JetchatDrawerContent({}, {})
-            }
-        }
-    }
-} */
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
