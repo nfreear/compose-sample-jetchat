@@ -42,7 +42,8 @@ fun JetchatDrawer(
                     drawerContainerColor = MaterialTheme.colorScheme.background,
                     drawerContentColor = MaterialTheme.colorScheme.onBackground,
                 ) {
-                    JetchatDrawerContent(
+                    TypographySampleDrawerContent(
+                    // Was: JetchatDrawerContent(
                         onProfileClicked = onProfileClicked,
                         onChatClicked = onChatClicked,
                         selectedMenu = selectedMenu,
