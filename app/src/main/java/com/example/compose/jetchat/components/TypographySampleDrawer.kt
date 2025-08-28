@@ -47,18 +47,20 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+// import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.jetchat.R
 import com.example.compose.jetchat.widget.WidgetReceiver
 import com.example.compose.jetchat.demo.ColumnOrRowDemo
+import com.example.compose.jetchat.demo.ColumnOrRowDemoV2
 import com.example.compose.jetchat.demo.TypographyDemo
 import com.example.compose.jetchat.demo.TypoDemoV2
 
 // Based on: `components/JetchatDrawer.kt` ~ `JetchatDrawerContent()`
 @Composable
 fun TypographySampleDrawerContent(onProfileClicked: (String) -> Unit, onChatClicked: (String) -> Unit, selectedMenu: String = "composers") {
-    val version2 = true
+    val typoVersion2 = true
+    val corVersion2 = false
 
     // Use windowInsetsTopHeight() to add a spacer which pushes the drawer content
     // below the status bar (y-axis)
@@ -67,7 +69,7 @@ fun TypographySampleDrawerContent(onProfileClicked: (String) -> Unit, onChatClic
         DrawerHeader()
         DividerItem()
 
-        if (version2) {
+        if (typoVersion2) {
             DrawerItemHeader("Typography - Font Size, V2")
             TypoDemoV2()
         } else {
@@ -76,8 +78,13 @@ fun TypographySampleDrawerContent(onProfileClicked: (String) -> Unit, onChatClic
         }
 
         DividerItem()
-        DrawerItemHeader("Column Or Row switching")
-        ColumnOrRowDemo(onClick = { /* Do something */ })
+        if (corVersion2) {
+            DrawerItemHeader("Column Or Row switching, V2")
+            ColumnOrRowDemoV2(onClick = { /* Do something */ })
+        } else {
+            DrawerItemHeader("Column Or Row switching")
+            ColumnOrRowDemo(onClick = { /* Do something */ })
+        }
 
         if (widgetAddingIsSupported(LocalContext.current)) {
             DividerItem(modifier = Modifier.padding(horizontal = 28.dp))

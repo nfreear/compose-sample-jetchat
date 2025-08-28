@@ -1,5 +1,6 @@
 package com.example.compose.jetchat.demo
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -45,13 +46,15 @@ fun TypographyDemo() {
 @Composable
 fun TypoDemoV2() {
     // DrawerItemHeader("Typography - Font Size, V2")
-    TypoRowV2(10.sp)
-    TypoRowV2(20.sp)
-    TypoRowV2(30.sp)
-    TypoRowV2(40.sp)
-    TypoRowV2(50.sp)
-    TypoRowV2(60.sp)
-    TypoRowV2(70.sp)
+    Column(modifier = Modifier.padding(12.dp)) {
+        TypoRowV2(10.sp)
+        TypoRowV2(20.sp)
+        TypoRowV2(30.sp)
+        TypoRowV2(40.sp)
+        TypoRowV2(50.sp)
+        TypoRowV2(60.sp)
+        TypoRowV2(70.sp)
+    }
 }
 
 @Composable
