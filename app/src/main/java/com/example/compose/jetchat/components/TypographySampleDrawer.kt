@@ -77,7 +77,7 @@ fun TypographySampleDrawerContent(onProfileClicked: (String) -> Unit, onChatClic
 
         DividerItem()
         DrawerItemHeader("Column Or Row switching")
-        ColumnOrRowDemo()
+        ColumnOrRowDemo(onClick = { /* Do something */ })
 
         if (widgetAddingIsSupported(LocalContext.current)) {
             DividerItem(modifier = Modifier.padding(horizontal = 28.dp))
