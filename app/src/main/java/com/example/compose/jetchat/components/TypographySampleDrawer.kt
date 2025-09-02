@@ -53,6 +53,7 @@ import com.example.compose.jetchat.R
 import com.example.compose.jetchat.widget.WidgetReceiver
 import com.example.compose.jetchat.demo.ColumnOrRowDemo
 import com.example.compose.jetchat.demo.ColumnOrRowDemoV2
+import com.example.compose.jetchat.demo.HorizVertConstraintDemoV3
 import com.example.compose.jetchat.demo.TypographyDemo
 import com.example.compose.jetchat.demo.TypoDemoV2
 
@@ -60,7 +61,7 @@ import com.example.compose.jetchat.demo.TypoDemoV2
 @Composable
 fun TypographySampleDrawerContent(onProfileClicked: (String) -> Unit, onChatClicked: (String) -> Unit, selectedMenu: String = "composers") {
     val typoVersion2 = true
-    val corVersion2 = false
+    val corVersion = 3
 
     // Use windowInsetsTopHeight() to add a spacer which pushes the drawer content
     // below the status bar (y-axis)
@@ -78,7 +79,11 @@ fun TypographySampleDrawerContent(onProfileClicked: (String) -> Unit, onChatClic
         }
 
         DividerItem()
-        if (corVersion2) {
+        if (corVersion == 3) {
+            DrawerItemHeader("Horizontal or vertical chain, V3")
+            HorizVertConstraintDemoV3()
+        }
+        else if (corVersion == 2) {
             DrawerItemHeader("Column Or Row switching, V2")
             ColumnOrRowDemoV2(onClick = { /* Do something */ })
         } else {

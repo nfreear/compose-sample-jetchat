@@ -1,10 +1,10 @@
 <img src="screenshots/jetchatlogo.png" alt=""/>
 
-# Jetchat sample <small>_(modified)_</small>
+# Jetchat sample <sup>modified</sup>
 
 Jetchat is a sample chat app built with [Jetpack Compose][compose].
 
->It has been modified, with added [typography demos][demo] ([#2][])
+>The app has been modified, and contains [typography demos][demo] ([#2][]).
 
 To try out this sample app, use the latest stable version
 of [Android Studio](https://developer.android.com/studio).
