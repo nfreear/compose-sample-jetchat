@@ -8,7 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.TextUnit
 
-// Convert Scale-independent pixels (sp) to Device-independent pixels (dp).
+/**
+ * Convert a TextUnit from Scale-independent pixels (sp) to Device-independent pixels (dp).
+ */
 @SuppressLint("LocalContextResourcesRead")
 @RequiresApi(Build.VERSION_CODES.UPSIDE_DOWN_CAKE)
 @Composable

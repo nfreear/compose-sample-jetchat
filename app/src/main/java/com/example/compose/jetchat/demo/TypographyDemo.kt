@@ -18,6 +18,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 // import com.example.compose.jetchat.demo.convertSpToDp
 
+/**
+ * Display device-independent (DP) text sizes for some scale-independent
+ * input sizes from 11sp (.labelSmall) to 45sp (.displayMedium).
+ */
 @Composable
 fun TypographyDemo() {
     // DrawerItemHeader("Typography - Font Size")
@@ -43,6 +47,10 @@ fun TypographyDemo() {
     )
 }
 
+/**
+ * Display device-independent (DP) text sizes for scale-independent input
+ * sizes from 10 to 70sp (increments of 10sp).
+ */
 @Composable
 fun TypoDemoV2() {
     // DrawerItemHeader("Typography - Font Size, V2")

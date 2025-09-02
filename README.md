@@ -1,8 +1,10 @@
-<img src="screenshots/jetchatlogo.png"/>
+<img src="screenshots/jetchatlogo.png" alt=""/>
 
-# Jetchat sample
+# Jetchat sample _(modified)_
 
 Jetchat is a sample chat app built with [Jetpack Compose][compose].
+
+>It has been modified, with added [typography demos](./app/src/main/java/com/example/compose/jetchat/demo/) ([#2](./issues/2))
 
 To try out this sample app, use the latest stable version
 of [Android Studio](https://developer.android.com/studio).
@@ -63,7 +65,7 @@ Some composable state survives activity or process recreation, like `currentInpu
 Jetchat follows the [Material Design 3](https://m3.material.io) principles and uses the `MaterialTheme` composable and M3 components. On Android 12+ Jetchat supports Material You dynamic color, which extracts a custom color scheme from the device wallpaper. Jetchat uses a custom, branded color scheme as a fallback. It also implements custom typography using the Karla and Montserrat font families.
 
 ### Nested scrolling interop
-Jetchat contains an example of how to use [`rememberNestedScrollInteropConnection()`](https://developer.android.com/reference/kotlin/androidx/compose/ui/platform/package-summary#rememberNestedScrollInteropConnection()) to achieve successful nested scroll interop between a View parent that implements `androidx.core.view.NestedScrollingParent3` and a Compose child. The example used here is a combination of a View parent `CoordinatorLayout` and a nested, Compose child `BoxWithConstraints` in [ProfileFragment](app/src/main/java/com/example/compose/jetchat/profile/ProfileFragment.kt). 
+Jetchat contains an example of how to use [`rememberNestedScrollInteropConnection()`](https://developer.android.com/reference/kotlin/androidx/compose/ui/platform/package-summary#rememberNestedScrollInteropConnection()) to achieve successful nested scroll interop between a View parent that implements `androidx.core.view.NestedScrollingParent3` and a Compose child. The example used here is a combination of a View parent `CoordinatorLayout` and a nested, Compose child `BoxWithConstraints` in [ProfileFragment](app/src/main/java/com/example/compose/jetchat/profile/ProfileFragment.kt).
 
 ### UI tests
 In [androidTest](app/src/androidTest/java/com/example/compose/jetchat) you'll find a suite of UI tests that showcase interesting patterns in Compose:

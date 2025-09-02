@@ -16,6 +16,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.Composable
 // import com.example.compose.jetchat.demo.convertSpToDp
 
+/**
+ * Demo of switching from Row to Column stacking when the user chooses
+ * larger font sizes in Android system settings.
+ */
 @Composable
 fun ColumnOrRowDemo(onClick: () -> Unit) {
     // Threshold: 18.dp
@@ -52,6 +56,9 @@ fun ColumnOrRowDemo(onClick: () -> Unit) {
     }
 }
 
+/**
+ * "ColumnOrRowDemoV2" not in use!
+ */
 @Composable
 fun ColumnOrRowDemoV2(onClick: () -> Unit) {
     //..
@@ -68,6 +75,9 @@ fun ColumnOrRowDemoV2(onClick: () -> Unit) {
     }
 }
 
+/**
+ * "ColumnOrRow" function does not work. The cast crashes the app.
+ */
 @Composable
 inline fun ColumnOrRow(
     modifier: Modifier = Modifier,
@@ -86,7 +96,7 @@ inline fun ColumnOrRow(
         return Column(
             modifier = modifier,
             verticalArrangement = Arrangement.spacedBy(10.dp),
-            content = content as @Composable (ColumnScope.() -> Unit), // @TODO: Casting doesn't work. Crashes!
+            content = content as @Composable (ColumnScope.() -> Unit), // @TODO: Casting doesn't work ("Unchecked cast..."). Crashes!
         )
     } else {
         return Row(
