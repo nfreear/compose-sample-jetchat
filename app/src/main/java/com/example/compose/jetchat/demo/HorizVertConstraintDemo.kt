@@ -1,5 +1,3 @@
-
-
 /*
  * Copyright 2023 The Android Open Source Project
  *
@@ -19,7 +17,7 @@
 @file:Suppress("UNUSED_VARIABLE")
 
 package com.example.compose.jetchat.demo
-// package com.example.compose.snippets.layouts
+// Was: package com.example.compose.snippets.layouts
 
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.padding
@@ -37,6 +35,12 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.layoutId
 
+/**
+ * Demonstration of using `ConstraintLayout` and chains to stack widgets
+ * horizontally or vertically depending on the Android system setting for font size.
+ *
+ * @see https://github.com/android/snippets/blob/main/compose/snippets/src/main/java/com/example/compose/snippets/layouts/ConstraintLayoutSnippets.kt#L147-L157
+ */
 @Composable
 fun HorizVertConstraintDemoV3 () {
     val constraintSet = decoupledHorizVertConstraints()

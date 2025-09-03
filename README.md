@@ -4,7 +4,16 @@
 
 Jetchat is a sample chat app built with [Jetpack Compose][compose].
 
->The app has been modified, and contains [typography demos][demo] ([#2][]).
+## Modifications
+
+The app has been modified. It contains:
+* [Typography and layout demos][demo] ([#2][]),
+* [Material 3 typography][typo],
+* [Original code][jetchat] ([commit][]),
+* [ConstraintLayout][] snippets.
+
+---
+## Original
 
 To try out this sample app, use the latest stable version
 of [Android Studio](https://developer.android.com/studio).
@@ -105,7 +114,15 @@ limitations under the License.
 
 [compose]: https://developer.android.com/jetpack/compose
 
+[repo]: https://github.com/nfreear/compose-sample-jetchat
+[jetchat]: https://github.com/android/compose-samples/tree/main/Jetchat
+[commit]: https://github.com/android/compose-samples/commit/cf4c64d40e55b81915bb651069df4fcc8364fa46
+  "Source commit cf4c64d: @srikrishnasakunia, 2025-08-19, Used remember with FocusRequester"
+[ConstraintLayout]: https://github.com/android/snippets/blob/main/compose/snippets/src/main/java/com/example/compose/snippets/layouts/ConstraintLayoutSnippets.kt#L147-L157
+  "ConstraintLayout snippets: createVerticalChain() function call"
 [demo]: ./app/src/main/java/com/example/compose/jetchat/demo/
   "Demo folder"
+[typo]: ./app/src/main/java/com/example/compose/jetchat/theme/Typography.kt
+  "File: theme/Typography.kt"
 [#2]: https://github.com/nfreear/compose-sample-jetchat/issues/2
   "Typography demos / samples (#2)"

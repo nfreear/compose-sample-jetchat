@@ -54,6 +54,10 @@ val KarlaFontFamily = FontFamily(
     Font(resId = R.font.karla_bold, weight = FontWeight.Bold),
 )
 
+/**
+ * Font sizes are sourced from Material 3 Typography.
+ * @see https://m3.material.io/styles/typography/type-scale-tokens
+ */
 val JetchatTypography = Typography(
     displayLarge = TextStyle(
         fontFamily = MontserratFontFamily,
