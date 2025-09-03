@@ -36,54 +36,65 @@ import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.layoutId
 
 /**
- * Demonstration of using `ConstraintLayout` and chains to stack widgets
+ * Demonstration of using `ConstraintLayout` and chains to stack elements
  * horizontally or vertically depending on the Android system setting for font size.
  *
+ * @TODO - Take account of screen width and/or device orientation?
  * @see https://github.com/android/snippets/blob/main/compose/snippets/src/main/java/com/example/compose/snippets/layouts/ConstraintLayoutSnippets.kt#L147-L157
  */
 @Composable
 fun HorizVertConstraintDemoV3 () {
-    val constraintSet = decoupledHorizVertConstraints()
+    val constraintSet = createAdaptiveChainConstraintSet()
 
     ConstraintLayout(
         constraintSet = constraintSet,
-        modifier = Modifier.padding(12.dp).fillMaxWidth(),
+        modifier = Modifier.padding(all = 12.dp).fillMaxWidth(),
     ) {
         Button(
             onClick = { /* Do something */ },
-            modifier = Modifier.layoutId("widget_A")
+            modifier = Modifier
+                .layoutId("widget_A")
+                .padding(bottom = 12.dp)
         ) {
             Text("Button One")
         }
         Button(
             onClick = { /* Do something */ },
-            modifier = Modifier.layoutId("widget_B")
+            modifier = Modifier
+                .layoutId("widget_B")
         ) {
             Text("Button Two")
         }
     }
 }
 
+// Was: decoupledHorizVertConstraints()
 @Composable
-private fun decoupledHorizVertConstraints (
+fun createAdaptiveChainConstraintSet (
     chainStyle: ChainStyle = ChainStyle.Spread,
-    thresholdInDp: Int = 18,
+    elementIds: Array<String> = arrayOf("widget_A", "widget_B"),
+    sizeThresholdInDp: Int = 18,
     textStyle: TextStyle = MaterialTheme.typography.bodyMedium
 ): ConstraintSet {
     val fontSizeInDp = convertSpToDp(textStyle.fontSize)
-    val shouldVerticalStack = (fontSizeInDp > thresholdInDp)
+    val shouldVerticalStack = (fontSizeInDp > sizeThresholdInDp)
 
     return ConstraintSet {
-        val widget_A = createRefFor("widget_A")
-        val widget_B = createRefFor("widget_B")
+        val references = elementIds.map { createRefFor(it)}
+        // val widget_A = createRefFor("widget_A")
 
         if (shouldVerticalStack) {
-            createVerticalChain(widget_A, widget_B, chainStyle = chainStyle)
+            createVerticalChain(*references.toTypedArray(), chainStyle = chainStyle)
         } else {
-            createHorizontalChain(widget_A, widget_B, chainStyle = chainStyle)
+            createHorizontalChain(*references.toTypedArray(), chainStyle = chainStyle)
         }
     }
 }
+
+//
+// ----------------------------------------------
+// NOT IN USE!
+//
 
 // [START android_compose_constraintlayout_basics]
 @Composable
