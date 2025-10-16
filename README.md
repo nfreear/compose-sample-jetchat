@@ -8,6 +8,7 @@ Jetchat is a sample chat app built with [Jetpack Compose][compose].
 
 The app has been modified. It contains:
 * [Typography and layout demos][demo] ([#2][]),
+* [Adaptive `ConstraintSet` demo][adapt],
 * [Material 3 typography][typo],
 * [Original code][jetchat] ([commit][]),
 * [ConstraintLayout][] snippets.
@@ -124,5 +125,7 @@ limitations under the License.
   "Demo folder"
 [typo]: ./app/src/main/java/com/example/compose/jetchat/theme/Typography.kt
   "File: theme/Typography.kt"
+[adapt]: https://github.com/nfreear/compose-sample-jetchat/blob/typography/app/src/main/java/com/example/compose/jetchat/demo/HorizVertConstraintDemo.kt#L39
+  "Adaptive horizontal/vertical constraint set demo"
 [#2]: https://github.com/nfreear/compose-sample-jetchat/issues/2
   "Typography demos / samples (#2)"

@@ -68,6 +68,9 @@ fun HorizVertConstraintDemoV3 () {
     }
 }
 
+/**
+ * Return a `ConstraintSet` that adapts to whether the font-size is above/below a threshold.
+ */
 // Was: decoupledHorizVertConstraints()
 @Composable
 fun createAdaptiveChainConstraintSet (
@@ -77,6 +80,7 @@ fun createAdaptiveChainConstraintSet (
     textStyle: TextStyle = MaterialTheme.typography.bodyMedium
 ): ConstraintSet {
     val fontSizeInDp = convertSpToDp(textStyle.fontSize)
+    // @TODO - Take account of screen width and/or device orientation?
     val shouldVerticalStack = (fontSizeInDp > sizeThresholdInDp)
 
     return ConstraintSet {
